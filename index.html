@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Promise Async Await</title>
+</head>
+<body>
+    <h1>JS Handson</h1>
+    <h2>Promises Async Await</h2>
+    <hr>
+
+
+<p class="ques">
+<span class="red">Qn 1. Write one example explaining how you can write a callback function ?</span>
+<p class="ans">
+    <span class="green">Ans - </span>
+<pre>
+    function callback(num1){
+        return num1*2;
+      }
+      function cb(num1,callback){
+        console.log(num1,callback);
+      }
+      cb(10,callback(20));
+</pre></p>
+
+
+<p class="ques">
+    <span class="red">Qn 2. "Write callback function to print numbers from 1 to 7, in which 1 should be printed after 1 sec , 2 should be printed after 2 sec, 3 should be printed after 3 sec and so on. <br>
+        Explain callback hell. <br>
+        Numbers<br>
+        1<br>
+        2<br>
+        3<br>
+        4<br>
+        5<br>
+        6<br>
+        7"</span>
+    <p class="ans">
+        <span class="green">Ans - </span>
+    <pre>
+        setTimeout(()=>{
+            let count=1
+            console.log(count++);
+            setTimeout(()=>{
+              console.log(count++);
+              setTimeout(()=>{
+                    console.log(count++);
+                setTimeout(()=>{
+                  console.log(count++);        
+                    setTimeout(()=>{
+                    console.log(count++);
+                      setTimeout(()=>{
+                        console.log(count++);
+                        setTimeout(()=>{
+                          console.log(count++)
+                        },7000)
+                      },6000)
+                },5000)
+                },4000)
+              },3000)
+            },2000)
+          },1000);
+    </pre></p>
+
+    <p class="ques">
+      <span class="red">Qn 3. Create a promise function accepting a argument, if yes is passed to the function then it should go to resolved state and print Promise Resolved, and if nothing is passed then it should go to reject state and catch the error and print Promise Rejected.</span>
+      <p class="ans">
+          <span class="green">Ans - </span>
+      <pre>
+        function abc(a){
+          let z=new Promise((res,rej)=>{
+            if(a=="Yes"){
+              res("Promise Resolved")
+            }
+            else{
+              rej(new Error("Promise Rejected"));
+            }
+          }).then(function(data){
+            console.log(data);
+          }).catch(function(err){
+            console.log(err);
+          })
+            return z;
+          }
+          abc("Yes");
+          abc("")
+      </pre></p>
+
+
+      <p class="ques">
+      <span class="red">Qn 4. Create examples to explain callback function.</span>
+      <p class="ans">
+          <span class="green">Ans - </span>
+      <pre>
+        function greet(name,callback) {
+          console.log('Hi' + ' ' + name);
+          callback();
+      }
+      
+      function callMe() {
+          console.log('I am callback function');
+      }
+      
+      greet('PrepBytes', callMe);
+      </pre></p>
+
+
+      <p class="ques">
+        <span class="red">Qn 5. Create examples to explain promises function</span>
+        <p class="ans">
+            <span class="green">Ans - </span>
+        <pre>
+          function abc(a){
+            let z=new Promise((res,rej)=>{
+              if(a=="Yes"){
+                res("Promise Resolved")
+              }
+              else{
+                rej(new Error("Promise Rejected"));
+              }
+            }).then(function(data){
+              console.log(data);
+            }).catch(function(err){
+              console.log(err);
+            })
+              return z;
+            }
+            abc("Yes");
+            abc("")
+        </pre></p>
+
+
+        <p class="ques">
+        <span class="red">Qn 6. Create examples to explain async await function.</span>
+        <p class="ans">
+            <span class="green">Ans - </span>
+        <pre>
+          function abc(a){
+            let z=new Promise((res,rej)=>{
+              if(a=="Yes"){
+                res("Promise Resolved")
+              }
+              else{
+                rej(new Error("Promise Rejected"));
+              }
+            })
+              return z;
+            }
+            async function getdata(){
+              try{
+              let data =await abc("N");
+                console.log(data);
+              }catch(err){
+                console.log(err)
+              }
+            }
+        </pre></p>
+
+
+        <p class="ques">
+        <span class="red">Qn 7. Create examples to explain promise.all function.</span>
+        <p class="ans">
+            <span class="green">Ans - </span>
+        <pre>
+          function abc(){
+            return new Promise((res,rej)=>{
+            setTimeout(()=>{
+             res("Hello") ;
+            },3000);
+            })
+          }
+          
+          function abc2(){
+            return new Promise((res,rej)=>{
+            setTimeout(()=>{
+             res("Ajay") ;
+            },6000);
+            })
+          }
+          
+          async function data(){
+            const t0 = performance.now();
+                let all=await Promise.all([abc(),abc2()]);
+              const t1 = performance.now();
+          
+            console.log(all[0]+all[1]);
+            console.log(`Call to doSomething took ${(t1 - t0)/1000}. seconds.`);
+          }
+          data();
+        </pre></p>
+</body>
+</html>
